@@ -10,3 +10,4 @@ npm i express
 npm i -D nodemon
 npm i date-fns uuid
 npm i cors
+npm i dotenv mongoose colors

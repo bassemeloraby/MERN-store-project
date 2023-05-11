@@ -1,5 +1,9 @@
 const express = require('express');
 const cors = require('cors')
+const colors = require('colors');
+const dotenv = require('dotenv').config();
+const connectDB = require('./config/db');
+
 
 const app = express();
 const path = require('path');
@@ -24,4 +28,10 @@ app.all('*', (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//Connect to the database before listening
+connectDB().then(() => {
+  app.listen(PORT, (err) => {
+    if (err) throw err;
+    console.log('Server listening on port'.red, PORT.yellow);
+  });
+});
